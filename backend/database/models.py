@@ -36,11 +36,11 @@ def db_drop_and_create_all():
     # add one demo row which is helping in POSTMAN test
     nanodegree = Nanodegree(
         title='Introduction to Computer Basics',
-        path='[{"name": "Introduction to Computer Basics", "courses": "3", "weeks": 6}]'
+        path='[{"name": "Introduction to Computer Basics", "courses": "3", "weeks": 6, "difficulty": 1}]'
     )
 
 
-    drink.insert()
+    nanodegree.insert()
 # ROUTES
 
 '''
@@ -56,7 +56,7 @@ class Nanodegree(db.Model):
     title = Column(String(80), unique=True)
     # the ingredients blob - this stores a lazy json blob
     # the required datatype is [{'color': string, 'name':string, 'parts':number}]
-    recipe = Column(String(180), nullable=False)
+    path = Column(String(180), nullable=False)
 
     '''
     short()
@@ -64,8 +64,8 @@ class Nanodegree(db.Model):
     '''
 
     def short(self):
-        print(json.loads(self.recipe))
-        short_path = [{'courses': r['courses'], 'weeks': r['weeks']} for r in json.loads(self.path)]
+        print(json.loads(self.path))
+        short_path = [{'name': r['name'], 'weeks': r['weeks']} for r in json.loads(self.path)]
         return {
             'id': self.id,
             'title': self.title,
@@ -126,3 +126,26 @@ class Nanodegree(db.Model):
 
     def __repr__(self):
         return json.dumps(self.short())
+
+
+'''
+Category
+
+'''
+class Category(db.Model):  
+  __tablename__ = 'categories'
+
+  id = Column(Integer, primary_key=True)
+  type = Column(String)
+  paid = Column(Boolean, default=True)
+
+  def __init__(self, type, paid):
+    self.type = type
+    self.paid = paid
+
+  def format(self):
+    return {
+      'id': self.id,
+      'type': self.type,
+      'paid': self.paid
+    }
