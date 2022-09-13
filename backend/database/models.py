@@ -36,7 +36,7 @@ def db_drop_and_create_all():
     # add one demo row which is helping in POSTMAN test
     nanodegree = Nanodegree(
         title='Introduction to Computer Basics',
-        path='[{"name": "Introduction to Programming Basics", "courses": "3", "weeks": 6, "difficulty": 1}]'
+        path='[{"title": "Introduction to Programming Basics", "courses": "3", "weeks": 6, "difficulty": 1}]'
     )
 
 
@@ -71,7 +71,7 @@ class Nanodegree(db.Model):
 
     def short(self):
         print(json.loads(self.path))
-        short_path = [{'name': r['name'], 'weeks': r['weeks']} for r in json.loads(self.path)]
+        short_path = [{'title': r['title'], 'weeks': r['weeks']} for r in json.loads(self.path)]
         return {
             'id': self.id,
             'title': self.title,
@@ -130,28 +130,45 @@ class Nanodegree(db.Model):
     def update(self):
         db.session.commit()
 
+    def format(self):
+        return {
+            "id": self.id,
+            "title": self.title,
+            "path": self.path,
+            "courses": self.courses,
+            "weeks": self.weeks,
+            "difficulty": self.difficulty
+        }
+
     def __repr__(self):
         return json.dumps(self.short())
 
 
 '''
-Category
+Course
 
 '''
-class Category(db.Model):  
-  __tablename__ = 'categories'
+class Course(db.Model):
+  __tablename__ = 'courses'
 
   id = Column(Integer, primary_key=True)
-  type = Column(String)
+  nanodegree_id = Column(Integer, ForeignKey(nanodegrees.id), nullable=True) #Nullable because not all courses go to a nanodegree
   
+  name = Column(String, nullable=False)
+  weeks = Column(Integer, nullable=False)
+  difficulty = Column(Integer, nullable=False)
 
-  def __init__(self, type, paid):
-    self.type = type
-    self.paid = paid
+
+  def __init__(self, name, weeks, difficulty):
+    self.name = name
+    self.weeks = weeks
+    self.difficulty = difficulty
 
   def format(self):
     return {
       'id': self.id,
-      'type': self.type,
-      'paid': self.paid
+      'nanodegree_id': self.nanodegree_id, 
+      'name': self.name,
+      'weeks': self.weeks,
+      'difficulty': self.difficulty
     }

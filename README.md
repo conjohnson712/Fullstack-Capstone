@@ -24,7 +24,7 @@ For this project, I have simplified Auticon's system to be organized in a 3-tier
       5. Can DELETE Nanodegree paths
 
 
-Prospective students can browse the list of Nanodegree paths available, but can only view the name of the Nanodegree and the estimated length to complete. The Auticon Representative is able to access more detailed information about the Nanodegree, but is not able to influence it. Udacity Managers, however, are granted the permission to Post, Patch, and Delete Nanodegree paths. 
+Prospective students can browse the list of Nanodegree paths available, but can only view the name of the Nanodegree and the estimated length to complete. The Auticon Representative is able to access more detailed information about the Nanodegree, but is not able to influence it. Auticon Representatives can send nanodegree information to interested students and then connect them with nanodegrees via Udacity Managers. Udacity Managers, however, are granted the permission to Post, Patch, and Delete Nanodegree paths. 
 
 For the purpose of confidentiality on behalf of Udacity and Auticon,all Nanodegrees, categories, and other Udacity resources are fake and created by myself.
 
