@@ -36,11 +36,13 @@ def db_drop_and_create_all():
     # add one demo row which is helping in POSTMAN test
     nanodegree = Nanodegree(
         title='Introduction to Computer Basics',
-        path='[{"name": "Introduction to Computer Basics", "courses": "3", "weeks": 6, "difficulty": 1}]'
+        path='[{"name": "Introduction to Programming Basics", "courses": "3", "weeks": 6, "difficulty": 1}]'
     )
 
 
     nanodegree.insert()
+
+
 # ROUTES
 
 '''
@@ -57,6 +59,10 @@ class Nanodegree(db.Model):
     # the ingredients blob - this stores a lazy json blob
     # the required datatype is [{'color': string, 'name':string, 'parts':number}]
     path = Column(String(180), nullable=False)
+
+    courses = Column(Integer)
+    weeks = Column(Integer)
+    difficulty = Column(Integer)
 
     '''
     short()
@@ -137,7 +143,7 @@ class Category(db.Model):
 
   id = Column(Integer, primary_key=True)
   type = Column(String)
-  paid = Column(Boolean, default=True)
+  
 
   def __init__(self, type, paid):
     self.type = type

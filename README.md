@@ -2,31 +2,31 @@
 
 ## Auticon: Autistic Training and Placement
 
-Serves as the Capstone and final project for the Full Stack Web Developer Nanodegree through Udacity. This project is inspired by Auticon, the company that has taken me under their wing and has been training me to become a web developer. I, like many other Autistic people, struggle to find sustainable employment due to the hardships that come from being Autistic. Auticon, both in life and in this project, serve as a liaison between Autistic learners and the tech companies that will hire them. Auticon reviews a student's skills, experience, aptitude, and eagerness to learn when making decisions on enrollment. They help students find their niche of study and give them the tools to hit the ground running. 
+Serves as the Capstone and final project for the Full Stack Web Developer Nanodegree through Udacity. This project is inspired by Auticon, the company that has taken me under their wing and has been helping train me to become a web developer. Auticon partners with Udacity to provide educational resources to their learners and employees. I, like many other Autistic people, struggle to find sustainable employment due to the hardships that come from being Autistic. Auticon, both in life and in this project, serve as a liaison between Autistic learners and the tech companies that will hire them. Auticon reviews a student's skills, experience, aptitude, and eagerness to learn when making decisions on enrollment. They help students find their niche of study and give them the tools to hit the ground running. 
 
-Auticon's system is organized in a 3-tier structure. From lowest number of permissions to highest:
+For this project, I have simplified Auticon's system to be organized in a 3-tier structure. From lowest number of permissions to highest:
 
-1. Prospective Students
+1. Prospective Student (Public)
    1. Permissions:
-      1. Can GET Nanodegree paths
+      1. Can GET Nanodegree paths (basic)
 
-2. Current Students
+2. Auticon Representative
    1. Permissions:
-      1. Can GET Nanodegree paths
-      2. Can GET Nanodegree path details
+      1. Can GET Nanodegree paths (basic)
+      2. Can GET Nanodegree path (detailed)
 
-3. Mentors
+3. Udacity Manager
    1. Permissions: 
-      1. Can GET Nanodegree paths
-      2. Can GET Nanodegree path details
-      3. Can POST Nanodgree paths
+      1. Can GET Nanodegree paths (basic)
+      2. Can GET Nanodegree path (detailed)
+      3. Can POST Nanodegree paths
       4. Can PATCH Nanodegree paths
       5. Can DELETE Nanodegree paths
 
 
-Prospective students can browse the list of Nanodegree paths available, but can only view the name of the Nanodegree and the estimated length to complete. Once the student enrolls and gets Current Student credentials, they can then view the individual courses and subtopics that will be covered in each part of the nanodegree. Finally, Mentors are granted the permission to Post, Patch, and Delete Nanodegree paths completely. 
+Prospective students can browse the list of Nanodegree paths available, but can only view the name of the Nanodegree and the estimated length to complete. The Auticon Representative is able to access more detailed information about the Nanodegree, but is not able to influence it. Udacity Managers, however, are granted the permission to Post, Patch, and Delete Nanodegree paths. 
 
-For the purpose of confidentiality on behalf of Udacity and Auticon,all Nanodegrees and their subsequent courses are fabricated by myself.
+For the purpose of confidentiality on behalf of Udacity and Auticon,all Nanodegrees, categories, and other Udacity resources are fake and created by myself.
 
 ## Pre-Requisites and Local Development
 
