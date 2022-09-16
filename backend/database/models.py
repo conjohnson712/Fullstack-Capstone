@@ -26,7 +26,7 @@ def setup_db(app):
 db_drop_and_create_all()
     drops the database tables and starts fresh
     can be used to initialize a clean database
-    !!NOTE you can change the database_filename variable to have multiple verisons of a database
+    !!NOTE you can change the database_filename variable to have multiple versions of a database
 '''
 
 
@@ -52,7 +52,7 @@ a persistent nanodegree entity, extends the base SQLAlchemy Model
 
 
 class Nanodegree(db.Model):
-    # Autoincrementing, unique primary key
+    # Auto-incrementing, unique primary key
     id = Column(Integer().with_variant(Integer, "sqlite"), primary_key=True)
     # String Title
     title = Column(String(80), unique=True)
@@ -152,7 +152,7 @@ class Course(db.Model):
   __tablename__ = 'courses'
 
   id = Column(Integer, primary_key=True)
-  nanodegree_id = Column(Integer, ForeignKey(nanodegrees.id), nullable=True) #Nullable because not all courses go to a nanodegree
+  # nanodegree_id = Column(Integer, ForeignKey('nanodegrees.id'), nullable=True) #Nullable because not all courses go to a nanodegree
   
   name = Column(String, nullable=False)
   weeks = Column(Integer, nullable=False)
@@ -167,7 +167,7 @@ class Course(db.Model):
   def format(self):
     return {
       'id': self.id,
-      'nanodegree_id': self.nanodegree_id, 
+      # 'nanodegree_id': self.nanodegree_id, 
       'name': self.name,
       'weeks': self.weeks,
       'difficulty': self.difficulty

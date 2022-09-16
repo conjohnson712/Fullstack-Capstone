@@ -2,15 +2,20 @@ import os
 from flask import Flask, request, abort, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
+from database.models import db_drop_and_create_all, setup_db, Nanodegree, Course
+from auth.auth import AuthError, requires_auth
 
 def create_app(test_config=None):
-  # create and configure the app
+  # create and configure the APP
   app = Flask(__name__)
+  setup_db(app)
   CORS(app)
 
   return app
 
+
 APP = create_app()
+# cors = CORS(APP, resources={r'/*': {'origins': '*'}})
 
 '''
 The rest of this code was made referencing my Coffee_Shop_API:
@@ -22,11 +27,31 @@ https://github.com/conjohnson712/Coffee-Shop
 !! NOTE THIS MUST BE UNCOMMENTED ON FIRST RUN
 !! Running this function will add one
 '''
-#db_drop_and_create_all()
+db_drop_and_create_all()
+
+
+''' 
+Function that paginates nanodegree results 
+Reference: My Trivia API project - https://github.com/conjohnson712/Trivia_API/blob/main/backend/flaskr/__init__.py
+'''
+NANODEGREES_PER_PAGE = 10
+
+def paginate_nanodegrees(request, selection):
+    # Limit number of nanodegrees that APPear per page
+    page = request.args.get("page", 1, type=int)
+    start = (page - 1) * nanodegrees_PER_PAGE
+    end = start + nanodegrees_PER_PAGE  
+
+    nanodegrees = [question.format() for question in selection]
+    current_nanodegrees = nanodegrees[start:end]
+
+    return current_nanodegrees
+
+
 
 # ROUTES
 """ Function that sets request allowances """
-@app.after_request
+@APP.after_request
 def after_request(response):
     response.headers.add("Access-Control-Allow-Headers", 
                         "Content-Type,Authorization,true")
@@ -37,9 +62,9 @@ def after_request(response):
 
 '''
 Empty route handler to test base server functionality 
-Reference: https://knowledge.udacity.com/questions/313462
+Reference: https://knowledge.udacity.com/nanodegrees/313462
 '''
-@app.route('/')
+@APP.route('/')
 def handler():
     return jsonify({
         "success": True
@@ -50,17 +75,17 @@ Function that gets the short list of nanodegrees
 Does not require special authorization to access
 """
 
-@app.route('/nanodegrees', methods=['GET'])
+@APP.route('/nanodegrees', methods=['GET'])
 def get_nanodegrees():
     try:
-        # Get drinks via query, set to variable
+        # Get nanodegrees via query, set to variable
         nanodegrees = Nanodegree.query.all()      
 
-        # If the length of the drink list is 0, raise 404 error
+        # If the length of the nanodegree list is 0, raise 404 error
         if len(nanodegrees) == 0:        
             abort(404)
 
-        # Return JSON object with short list of drinks and 200 status
+        # Return JSON object with short list of nanodegrees and 200 status
         return jsonify({
             'success': True,
             'nanodegrees': [nanodegree.short() for nanodegree in nanodegrees]
@@ -75,7 +100,7 @@ Requires Current Student or Mentor authorization.
 :param payload {string} 'Token Payload (jwt)'
 
 """ 
-@app.route('/nanodegrees-detailed', methods=['GET'])
+@APP.route('/nanodegrees-detailed', methods=['GET'])
 @requires_auth('get:nanodegrees-detailed')
 def get_nanodegree_details(payload):
     try:
@@ -101,7 +126,7 @@ Function that creates a new nanodegree entry and adds it to the list.
 Requires Mentor Authorization or higher
 :param payload {string} 'Token Payload (jwt)'
 """
-@app.route("/nanodegrees", methods=['POST'])
+@APP.route("/nanodegrees", methods=['POST'])
 @requires_auth('post:nanodegree')
 def create_nanodegree(payload):
     # Requests the JSON body
@@ -117,7 +142,7 @@ def create_nanodegree(payload):
         abort(422)
 
     # If parameters are present, return JSON object with nanodegrees.long
-    # Reference: https://knowledge.udacity.com/questions/350615
+    # Reference: https://knowledge.udacity.com/nanodegrees/350615
     try:
         title = body['title']
         path = json.dumps(body['path'])
@@ -144,9 +169,9 @@ Requires Mentor authorization or higher
 :param id {integer} 'Nanodegree Serial ID'
 Reference: https://github.com/udacity/cd0037-API-Development-and-Documentation-exercises/blob/master/1_Requests_Review/backend/flaskr/__init__.py
 """
-@app.route('/nanodegrees/<int:id>', methods=['PATCH'])
+@APP.route('/nanodegrees/<int:id>', methods=['PATCH'])
 @requires_auth('patch:nanodegrees')
-def update_drinks(payload, id):
+def update_nanodegrees(payload, id):
     # Request JSON body
     body = request.get_json()
 
@@ -190,7 +215,7 @@ Requires Mentor Authorization or higher
 :param payload {string} 'Token Payload (jwt)'
 :param id {integer} 'Nanodegree serial id'
 """
-@app.route('/nanodegrees/<int:id>', methods=['DELETE'])
+@APP.route('/nanodegrees/<int:id>', methods=['DELETE'])
 @requires_auth('delete:nanodegrees')
 def delete_nanodegrees(payload, id):
     nanodegree = Nanodegree.query.filter(Nanodegree.id == id).one_or_none()
@@ -217,7 +242,7 @@ Example error handling for unprocessable entity
 '''
 
 
-@app.errorhandler(422)
+@APP.errorhandler(422)
 def unprocessable(error):
     return jsonify({
         "success": False,
@@ -226,7 +251,7 @@ def unprocessable(error):
     }), 422
 
 
-@app.errorhandler(404)
+@APP.errorhandler(404)
 def not_found(error):
     return (
         jsonify({
@@ -235,7 +260,7 @@ def not_found(error):
         "message": "Resource not found"})
     ), 404
 
-@app.errorhandler(400)
+@APP.errorhandler(400)
 def bad_request(error):
     return jsonify({
         "success": False, 
@@ -243,7 +268,7 @@ def bad_request(error):
         "message": "Bad request"
     }), 400
 
-@app.errorhandler(500)
+@APP.errorhandler(500)
 def server_error(error):
     return jsonify({
         "success": False,
@@ -251,7 +276,7 @@ def server_error(error):
         "message": "Internal server error"
     }), 500
 
-@app.errorhandler(AuthError)
+@APP.errorhandler(AuthError)
 def not_authorized(auth_error):
     return jsonify({
         "success": False,
@@ -259,8 +284,8 @@ def not_authorized(auth_error):
         "message": "Not authorized" + auth_error.error
     }), 401
 
-# Reference: https://knowledge.udacity.com/questions/355320
-@app.errorhandler(AuthError)
+# Reference: https://knowledge.udacity.com/nanodegrees/355320
+@APP.errorhandler(AuthError)
 def handle_auth_error(ex):
     """
     Error returned if user is not authorized 

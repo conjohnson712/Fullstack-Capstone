@@ -195,7 +195,7 @@
 			]
 		},
 		{
-			"name": "Current Student",
+			"name": "Auticon Representative",
 			"item": [
 				{
 					"name": "/nanodegrees",
@@ -387,7 +387,7 @@
 			]
 		},
 		{
-			"name": "Mentor",
+			"name": "Udacity Manager",
 			"item": [
 				{
 					"name": "/nanodegrees",

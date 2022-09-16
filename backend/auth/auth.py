@@ -5,9 +5,9 @@ from jose import jwt
 from urllib.request import urlopen
 
 # The domain could not be changed from the last project
-AUTH0_DOMAIN = 'coffee-shop-conjohn712.us.auth0.com'  
+AUTH0_DOMAIN = 'auticon-conjohn712.us.auth0.com'  
 ALGORITHMS = ['RS256']
-API_AUDIENCE = 'https://Auticon/'
+API_AUDIENCE = 'auticon'
 
 # REFERENCE FOR THIS WHOLE FILE: https://github.com/udacity/FSND/blob/master/BasicFlaskAuth/app.py
 

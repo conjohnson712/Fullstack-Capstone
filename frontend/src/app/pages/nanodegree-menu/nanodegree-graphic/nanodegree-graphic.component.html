@@ -1,0 +1,9 @@
+<div class="path">
+  <div 
+  *ngFor="let course of nanodegree && nanodegree.path"
+  class="course"
+  [style.flexGrow]="course.weeks"
+  [style.background]="course.difficulty">
+    {{t}}
+  </div>
+</div>
