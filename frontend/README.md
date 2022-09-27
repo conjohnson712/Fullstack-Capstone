@@ -1,4 +1,4 @@
-# Coffee Shop Frontend
+# Auticon Learning Frontend
 
 ## Getting Setup
 

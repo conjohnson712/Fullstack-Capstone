@@ -52,23 +52,6 @@ This API returns 4 different error types:
 #### GET /nanodegree
 // TODO
 
-## Testing
-To run tests, enter the following commands into a terminal:
-```
-dropdb trivia_test;
-createdb trivia_test;
-psql trivia_test < trivia.psql;
-python test_flaskr.py;
-```
-
-or if you are on Windows:
-```
-drop database trivia_test;
-create database trivia_test;
-psql -d trivia_test -U db_owner -a -f trivia.psql;
-python test_flaskr.py;
-```
-
 
 ## Special Thanks / Credit 
 Credit goes to Udacity for providing the starter code for this project, as well as the previous assignments that provided the knowledge necessary to bring this project to life. Special thanks go out to Auticon for providing me with a life-changing experience over the past year that I have worked with them. The confidence, problem-solving, and tenacity that I have gained through my time with Auticon thus far is priceless and something I will forever be grateful for.

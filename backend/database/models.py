@@ -36,7 +36,7 @@ def db_drop_and_create_all():
     # add one demo row which is helping in POSTMAN test
     nanodegree = Nanodegree(
         title='Introduction to Computer Basics',
-        path='[{"title": "Introduction to Programming Basics", "path": {}, "weeks": 6, "difficulty": 1}]'
+        path='[{"name": "Introduction to Programming Basics", "weeks": 6, "difficulty": 1}, {"name": "Understanding Those Pesky Logins", "weeks": 3, "difficulty": 1}]'
     )
 
 
@@ -61,8 +61,8 @@ class Nanodegree(db.Model):
     path = Column(String(180), nullable=False)
 
     # courses = Column(Integer)
-    weeks = Column(Integer)
-    difficulty = Column(Integer)
+    # weeks = Column(Integer)
+    # difficulty = Column(Integer)
 
     '''
     short()
@@ -71,7 +71,7 @@ class Nanodegree(db.Model):
 
     def short(self):
         print(json.loads(self.path))
-        short_path = [{'title': r['title'], 'weeks': r['weeks']} for r in json.loads(self.path)]
+        short_path = [{'name': r['name']} for r in json.loads(self.path)]
         return {
             'id': self.id,
             'title': self.title,
@@ -135,9 +135,6 @@ class Nanodegree(db.Model):
             "id": self.id,
             "title": self.title,
             "path": self.path,
-            # "courses": self.courses,
-            "weeks": self.weeks,
-            "difficulty": self.difficulty
         }
 
     def __repr__(self):
@@ -166,8 +163,7 @@ class Course(db.Model):
 
   def format(self):
     return {
-      'id': self.id,
-      # 'nanodegree_id': self.nanodegree_id, 
+      'id': self.id, 
       'name': self.name,
       'weeks': self.weeks,
       'difficulty': self.difficulty
