@@ -36,7 +36,7 @@ def db_drop_and_create_all():
     # add one demo row which is helping in POSTMAN test
     nanodegree = Nanodegree(
         title='Introduction to Computer Basics',
-        path='[{"title": "Introduction to Programming Basics", "courses": "3", "weeks": 6, "difficulty": 1}]'
+        path='[{"title": "Introduction to Programming Basics", "path": {}, "weeks": 6, "difficulty": 1}]'
     )
 
 
@@ -60,7 +60,7 @@ class Nanodegree(db.Model):
     # the required datatype is [{'color': string, 'name':string, 'parts':number}]
     path = Column(String(180), nullable=False)
 
-    courses = Column(Integer)
+    # courses = Column(Integer)
     weeks = Column(Integer)
     difficulty = Column(Integer)
 
@@ -135,7 +135,7 @@ class Nanodegree(db.Model):
             "id": self.id,
             "title": self.title,
             "path": self.path,
-            "courses": self.courses,
+            # "courses": self.courses,
             "weeks": self.weeks,
             "difficulty": self.difficulty
         }

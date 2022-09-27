@@ -2,8 +2,8 @@ import os
 from flask import Flask, request, abort, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
-from database.models import db_drop_and_create_all, setup_db, Nanodegree, Course
-from auth.auth import AuthError, requires_auth
+from .database.models import db_drop_and_create_all, setup_db, Nanodegree, Course
+from .auth.auth import AuthError, requires_auth
 
 def create_app(test_config=None):
   # create and configure the APP

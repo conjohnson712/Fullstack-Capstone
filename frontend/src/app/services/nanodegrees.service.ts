@@ -8,8 +8,7 @@ export interface Nanodegree {
   id: number;
   title: string;
   path: Array<{
-          title: string,
-          courses: string,
+          name: string,
           weeks: number,
           difficulty: number
         }>;
@@ -22,68 +21,68 @@ export class NanodegreesService {
 
   url = environment.apiServerUrl;
 
-  public items: {[key: number]: Nanodegree} = {};
-  // = {
-  //                             1: {
-  //                             id: 1,
-  //                             title: 'Intro to Computer Basics',
-  //                             path: [
-  //                                   {
-  //                                     name: 'The Power Button: Where It All Begins',
-  //                                     weeks: '1',
-  //                                     difficulty: 1
-  //                                   },
-  //                                   {
-  //                                     name: 'Understanding Those Pesky Logins',
-  //                                     weeks: '3',
-  //                                     difficulty: 1
-  //                                   },
-  //                                 ]
-  //                           },
-  //                           2: {
-  //                             id: 2,
-  //                             title: 'Intermediate Computer Knowledge',
-  //                             path: [
+  public items: {[key: number]: Nanodegree} //= {};
+  = {
+                              1: {
+                              id: 1,
+                              title: 'Intro to Computer Basics',
+                              path: [
+                                    {
+                                      name: 'The Power Button: Where It All Begins',
+                                      weeks: 1,
+                                      difficulty: 1
+                                    },
+                                    {
+                                      name: 'Understanding Those Pesky Logins',
+                                      weeks: 3,
+                                      difficulty: 1
+                                    },
+                                  ]
+                            },
+                            2: {
+                              id: 2,
+                              title: 'Intermediate Computer Knowledge',
+                              path: [
 
-  //                                   {
-  //                                     name: 'Microsoft Word',
-  //                                     weeks: '2',
-  //                                     difficulty: 2
-  //                                   },
-  //                                   {
-  //                                     name: 'Microsoft Excel',
-  //                                     weeks: '2',
-  //                                     difficulty: 2
-  //                                   },
-  //                                   {
-    //                                   name: 'Microsoft Powerpoint',
-    //                                   weeks: '2',
-    //                                   difficulty: 2
-    //                                  },
-  //                                 ]
-  //                           },
-  //                           3: {
-  //                             id: 3,
-  //                             title: 'Beginner Video Game Development',
-  //                             path: [
-  //                                   {
-  //                                     name: 'Creating Text-Based Adventures',
-  //                                     weeks: '3,
-  //                                     difficulty: 3
-  //                                   },
-  //                                   {
-  //                                     name: 'Creating 2D Side-Scroller Games',
-  //                                     weeks: '3',
-  //                                     difficulty: 3
-  //                                   },
-  //                                   {
-  //                                     name: 'Creating 3D Games and FPS',
-  //                                     weeks: '3',
-  //                                     difficulty: 3
-  //                                   },
-  //                                 ]
-  //                           }
-  //   };
+                                    {
+                                      name: 'Microsoft Word',
+                                      weeks: 2,
+                                      difficulty: 2
+                                    },
+                                    {
+                                      name: 'Microsoft Excel',
+                                      weeks: 2,
+                                      difficulty: 2
+                                    },
+                                    {
+                                      name: 'Microsoft Powerpoint',
+                                      weeks: 2,
+                                      difficulty: 2
+                                     },
+                                  ]
+                            },
+                            3: {
+                              id: 3,
+                              title: 'Beginner Video Game Development',
+                              path: [
+                                    {
+                                      name: 'Creating Text-Based Adventures',
+                                      weeks: 3,
+                                      difficulty: 3
+                                    },
+                                    {
+                                      name: 'Creating 2D Side-Scroller Games',
+                                      weeks: 3,
+                                      difficulty: 3
+                                    },
+                                    {
+                                      name: 'Creating 3D Games and FPS',
+                                      weeks: 3,
+                                      difficulty: 3
+                                    },
+                                  ]
+                            }
+    };
 
 
   constructor(private auth: AuthService, private http: HttpClient) { }

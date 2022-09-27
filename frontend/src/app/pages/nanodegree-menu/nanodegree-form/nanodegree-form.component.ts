@@ -34,7 +34,7 @@ export class NanodegreeFormComponent implements OnInit {
   }
 
   addCourse(i: number = 0) {
-    this.nanodegree.path.splice(i + 1, 0, {title: '', courses: '', weeks: 1, difficulty: 1});
+    this.nanodegree.path.splice(i + 1, 0, {name: '', weeks: 1, difficulty: 1});
   }
 
   removeCourse(i: number) {
