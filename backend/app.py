@@ -27,7 +27,7 @@ https://github.com/conjohnson712/Coffee-Shop
 !! NOTE THIS MUST BE UNCOMMENTED ON FIRST RUN
 !! Running this function will add one
 '''
-# db_drop_and_create_all()
+db_drop_and_create_all()
 
 
 ''' 
@@ -140,24 +140,24 @@ def create_nanodegree(payload):
     # If the required parameters for new nanodegrees aren't present, abort
     if 'title' and 'path' not in body:
         abort(422)
-    else: 
-        # If parameters are present, return JSON object with nanodegrees.long
-        # Reference: https://knowledge.udacity.com/nanodegrees/350615
-        try:
-            title = body['title']
-            path = json.dumps(body['path'])
 
-            nanodegree = Nanodegree(title=title, path=path)
-            nanodegree.insert()
+    # If parameters are present, return JSON object with nanodegrees.long
+    # Reference: https://knowledge.udacity.com/nanodegrees/350615
+    try:
+        title = body['title']
+        path = json.dumps(body['path'])
 
-            return jsonify({
-                'success': True, 
-                'nanodegrees': [nanodegree.long()]
-            }), 200
+        nanodegree = Nanodegree(title=title, path=path)
+        nanodegree.insert()
+
+        return jsonify({
+            'success': True, 
+            'nanodegrees': [nanodegree.long()]
+        }), 200
 
         # Raise 403 error for any other caught errors
-        except:
-            abort(403)
+    except:
+        abort(403)
             
 
 
