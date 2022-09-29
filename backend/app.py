@@ -179,7 +179,6 @@ def create_nanodegree(payload):
         degree_path = json.dumps(body['degree_path'])
 
         nanodegree = Nanodegree(title=title, degree_path=degree_path)
-        print(Nanodegree)
         nanodegree.insert()
 
         return jsonify({
@@ -269,7 +268,7 @@ def delete_nanodegrees(payload, id):
 
 
 #
-# COURSE ROUTES
+# COURSE ROUTES 
 #
 """ 
 Function that gets the list of courses
@@ -305,11 +304,119 @@ def get_courses():
     except:
         abort(422)
 
+""" 
+Function that creates a new course entry and adds it to the list. 
+Requires Mentor Authorization or higher
+:param payload {string} 'Token Payload (jwt)'
+"""
+@APP.route('/courses', methods=['POST'])
+@requires_auth('post:courses')
+def create_course(payload):
+    # # Requests the JSON body
+    body = request.get_json()
+    course = [course for course in course.query.all()]
+    
+    # If the body comes in empty, raise a 404 error
+    if len(body) == 0:
+        abort(404)
+
+    # If the required parameters for new courses aren't present, abort
+    if 'name' and 'weeks' and 'difficulty' not in body:
+        abort(422)
+
+    # If parameters are present, return JSON object with courses.long
+    # Reference: https://knowledge.udacity.com/courses/350615
+    try:
+        name = body['name']
+        weeks = body['weeks']
+        difficulty = body['difficulty']
+
+        course = Course(name=name, weeks=weeks, difficulty=difficult)
+        course.insert()
+
+        return jsonify({
+            'success': True, 
+            'courses': [course]
+        }), 200
+
+        # Raise 403 error for any other caught errors
+    except:
+        abort(403)
 
 
+"""
+Function that updates course information.
+Requires Mentor authorization or higher 
+:param payload {string} 'Token Payload (jwt)
+:param id {integer} 'course Serial ID'
+Reference: https://github.com/udacity/cd0037-API-Development-and-Documentation-exercises/blob/master/1_Requests_Review/backend/flaskr/__init__.py
+"""
+@APP.route('/courses/<int:id>', methods=['PATCH'])
+@requires_auth('patch:courses')
+def update_courses(payload, id):
+    # Request JSON body
+    body = request.get_json()
+
+    try:
+        # Gather courses, filtering by id
+        course = Course.query.filter(Course.id == id).one_or_none()
+
+        # If there are no courses, raise a 404 error
+        if course is None:
+            abort(404)
+            
+        # If name, weeks, and difficulty in body, update name, weeks, and difficulty
+        if "name" in body:
+            course.name = body.get("name")
+
+        if "weeks" in body:
+            course.weeks = body.get("weeks")
+
+        if "difficulty" in body:
+            course.difficulty = body.get("difficulty")
+
+        course.update()      # Update course
+
+        # Return JSON object with long course list and 200 status
+        return jsonify({
+            'success': True,
+            'courses': [course]
+        }), 200
+
+    # Have a bad request error to catch any other errors
+    except BaseException:
+        abort(400)
 
 
+"""
+Function that deletes a specific course from the menu
+Requires Mentor Authorization or higher 
+:param payload {string} 'Token Payload (jwt)'
+:param id {integer} 'course serial id'
+"""
+@APP.route('/courses/<int:id>', methods=['DELETE'])
+@requires_auth('delete:courses')
+def delete_courses(payload, id):
+    course = Course.query.filter(Course.id == id).one_or_none()
+
+    if course is None:
+        abort(404)
+
+    try: 
+        course.delete()
+
+        return jsonify({
+            'success': True,
+            'delete': id
+        }), 200
+
+    # Raise 422 error if any other errors are caught
+    except BaseException: 
+        abort(422)
+
+#
 # Error Handling
+#
 '''
 Example error handling for unprocessable entity
 '''
