@@ -27,7 +27,7 @@ https://github.com/conjohnson712/Coffee-Shop
 !! NOTE THIS MUST BE UNCOMMENTED ON FIRST RUN
 !! Running this function will add one
 '''
-db_drop_and_create_all()
+# db_drop_and_create_all()
 
 
 ''' 
@@ -129,10 +129,10 @@ Requires Mentor Authorization or higher
 @APP.route('/nanodegrees', methods=['POST'])
 @requires_auth('post:nanodegrees')
 def create_nanodegree(payload):
-    # Requests the JSON body
+    # # Requests the JSON body
     body = request.get_json()
     nanodegree = [nanodegree.long() for nanodegree in Nanodegree.query.all()]
-    
+
     # If the body comes in empty, raise a 404 error
     if len(body) == 0:
         abort(404)
@@ -140,24 +140,24 @@ def create_nanodegree(payload):
     # If the required parameters for new nanodegrees aren't present, abort
     if 'title' and 'path' not in body:
         abort(422)
-    
-    # If parameters are present, return JSON object with nanodegrees.long
-    # Reference: https://knowledge.udacity.com/nanodegrees/350615
-    try:
-        title = body['title']
-        path = json.dumps(body['path'])
+    else: 
+        # If parameters are present, return JSON object with nanodegrees.long
+        # Reference: https://knowledge.udacity.com/nanodegrees/350615
+        try:
+            title = body['title']
+            path = json.dumps(body['path'])
 
-        nanodegree = Nanodegree(title=title, path=path)
-        nanodegree.insert()
+            nanodegree = Nanodegree(title=title, path=path)
+            nanodegree.insert()
 
-        return jsonify({
-            'success': True, 
-            'nanodegrees': [nanodegree],
-        }), 200
+            return jsonify({
+                'success': True, 
+                'nanodegrees': [nanodegree.long()]
+            }), 200
 
-    # Raise 403 error for any other caught errors
-    except BaseException:
-        abort(403)
+        # Raise 403 error for any other caught errors
+        except:
+            abort(403)
             
 
 
