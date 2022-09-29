@@ -486,7 +486,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"title\": \"Test\",\n    \"path\": {\n        \"name\": \"Test Course\",\n        \"weeks\": 1\n,\n        \"difficulty\": 1\n    }\n}"
+							"raw": "{\n    \"title\": \"Test\",\n    \"degree_path\": {\n        \"name\": \"Test Course\",\n        \"weeks\": 1\n,\n        \"difficulty\": 1\n    }\n}"
 						},
 						"url": {
 							"raw": "{{host}}/nanodegrees",

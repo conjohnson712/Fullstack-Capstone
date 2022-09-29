@@ -14,18 +14,18 @@
         <ion-input type="text" [(ngModel)]="nanodegree.title" name="title"></ion-input>
       </ion-item>
 
-      <ion-item *ngFor="let Course of nanodegree.path; let i = index;  trackBy: customTrackBy">
+      <ion-item *ngFor="let Course of nanodegree.degree_path; let i = index;  trackBy: customTrackBy">
         <ion-label>Course Name</ion-label>
-        <ion-input [(ngModel)]="nanodegree.path[i].name" [name]="'Course Title'+i"></ion-input>
+        <ion-input [(ngModel)]="nanodegree.degree_path[i].name" [name]="'Course Title'+i"></ion-input>
 
         <ion-label>Number of weeks</ion-label>
-        <ion-input type="number" [(ngModel)]="nanodegree.path[i].weeks" [name]="'Course weeks'+i"></ion-input>
+        <ion-input type="number" [(ngModel)]="nanodegree.degree_path[i].weeks" [name]="'Course weeks'+i"></ion-input>
 
         <ion-label>Difficulty</ion-label>
-        <ion-input type="text" [(ngModel)]="nanodegree.path[i].difficulty" [name]="'Course difficulty'+i"></ion-input>
+        <ion-input type="text" [(ngModel)]="nanodegree.degree_path[i].difficulty" [name]="'Course difficulty'+i"></ion-input>
 
-        <ion-button (click)="removeCourse(i)" [disabled]="i==0 && nanodegree.path.length==1">Remove</ion-button><br />
-        <ion-button (click)="addCourse(i)" [disabled]="nanodegree.path.length==5">ADD</ion-button><br />
+        <ion-button (click)="removeCourse(i)" [disabled]="i==0 && nanodegree.degree_path.length==1">Remove</ion-button><br />
+        <ion-button (click)="addCourse(i)" [disabled]="nanodegree.degree_path.length==5">ADD</ion-button><br />
 
       </ion-item>
 

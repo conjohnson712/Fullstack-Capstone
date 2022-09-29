@@ -36,7 +36,7 @@ def db_drop_and_create_all():
     # add one demo row which is helping in POSTMAN test
     nanodegree = Nanodegree(
         title='Introduction to Computer Basics',
-        path='[{"name": "Introduction to Programming Basics", "weeks": 6, "difficulty": 1}, {"name": "Understanding Those Pesky Logins", "weeks": 3, "difficulty": 1}]'
+        degree_path='[{"name": "Introduction to Programming Basics", "weeks": 6, "difficulty": 1}, {"name": "Understanding Those Pesky Logins", "weeks": 3, "difficulty": 1}]'
     )
 
 
@@ -54,15 +54,13 @@ a persistent nanodegree entity, extends the base SQLAlchemy Model
 class Nanodegree(db.Model):
     # Auto-incrementing, unique primary key
     id = Column(Integer().with_variant(Integer, "sqlite"), primary_key=True)
+    
     # String Title
     title = Column(String(80), unique=True)
-    # the ingredients blob - this stores a lazy json blob
-    # the required datatype is [{'color': string, 'name':string, 'parts':number}]
-    path = Column(String(180), nullable=False)
 
-    # courses = Column(Integer)
-    # weeks = Column(Integer)
-    # difficulty = Column(Integer)
+    # the degree_path blob - this stores a lazy json blob
+    # the required datatype is [{'name': string, 'weeks': number, 'difficulty':number}]
+    degree_path = Column(String(180), nullable=False)
 
     '''
     short()
@@ -70,12 +68,12 @@ class Nanodegree(db.Model):
     '''
 
     def short(self):
-        print(json.loads(self.path))
-        short_path = [{'name': r['name']} for r in json.loads(self.path)]
+        print(json.loads(self.degree_path))
+        short_path = [{'name': r['name']} for r in json.loads(self.degree_path)]
         return {
             'id': self.id,
             'title': self.title,
-            'path': short_path
+            'degree_path': short_path
         }
 
     '''
@@ -87,7 +85,7 @@ class Nanodegree(db.Model):
         return {
             'id': self.id,
             'title': self.title,
-            'path': json.loads(self.path)
+            'degree_path': json.loads(self.degree_path)
         }
 
     '''
@@ -96,7 +94,7 @@ class Nanodegree(db.Model):
         the model must have a unique name
         the model must have a unique id or null id
         EXAMPLE
-            nanodegree = Nanodegree(title=req_title, path=req_path)
+            nanodegree = Nanodegree(title=req_title, degree_path=req_degree_path)
             nanodegree.insert()
     '''
 
@@ -109,7 +107,7 @@ class Nanodegree(db.Model):
         deletes a new model into a database
         the model must exist in the database
         EXAMPLE
-            nanodegree = Nanodegree(title=req_title, path=req_path)
+            nanodegree = Nanodegree(title=req_title, degree_path=req_degree_path)
             nanodegree.delete()
     '''
 
@@ -134,7 +132,7 @@ class Nanodegree(db.Model):
         return {
             "id": self.id,
             "title": self.title,
-            "path": self.path,
+            "degree_path": self.degree_path,
         }
 
     def __repr__(self):

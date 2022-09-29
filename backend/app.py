@@ -1,3 +1,4 @@
+import sys
 import os
 from flask import Flask, request, abort, jsonify
 from flask_sqlalchemy import SQLAlchemy
@@ -39,14 +40,30 @@ NANODEGREES_PER_PAGE = 10
 def paginate_nanodegrees(request, selection):
     # Limit number of nanodegrees that APPear per page
     page = request.args.get("page", 1, type=int)
-    start = (page - 1) * nanodegrees_PER_PAGE
-    end = start + nanodegrees_PER_PAGE  
+    start = (page - 1) * NANODEGREES_PER_PAGE
+    end = start + NANODEGREES_PER_PAGE  
 
     nanodegrees = [nanodegree.format() for nanodegree in selection]
     current_nanodegrees = nanodegrees[start:end]
 
     return current_nanodegrees
 
+''' 
+Function that paginates nanodegree results 
+Reference: My Trivia API project - https://github.com/conjohnson712/Trivia_API/blob/main/backend/flaskr/__init__.py
+'''
+
+COURSES_PER_PAGE = 5 
+def paginate_courses(request, selection):
+    # Limit number of nanodegrees that APPear per page
+    page = request.args.get("page", 1, type=int)
+    start = (page - 1) * COURSES_PER_PAGE
+    end = start + COURSES_PER_PAGE  
+
+    courses = [course.format() for course in selection]
+    current_courses = courses[start:end]
+
+    return current_courses
 
 
 # ROUTES
@@ -70,6 +87,8 @@ def handler():
         "success": True
     })
 
+
+# NANODEGREE ROUTES
 """ 
 Function that gets the short list of nanodegrees 
 Does not require special authorization to access
@@ -79,7 +98,17 @@ Does not require special authorization to access
 def get_nanodegrees():
     try:
         # Get nanodegrees via query, set to variable
-        nanodegrees = Nanodegree.query.all()      
+        selection = Nanodegree.query.all()      
+        
+
+        # Paginate the available nanodegrees
+        current_nanodegrees = paginate_nanodegrees(request, selection)
+        nanodegrees = Nanodegree.query.all()  
+
+        # Create a dictionary to house nanodegrees
+        nanodegrees_dict = {}
+        for nanodegree in nanodegrees:
+            nanodegrees_dict[nanodegree.id] = nanodegree.title
 
         # If the length of the nanodegree list is 0, raise 404 error
         if len(nanodegrees) == 0:        
@@ -93,6 +122,8 @@ def get_nanodegrees():
         
     except:
         abort(422)
+
+        
 
 """ 
 Function that returns long list of nanodegrees. 
@@ -132,22 +163,23 @@ def create_nanodegree(payload):
     # # Requests the JSON body
     body = request.get_json()
     nanodegree = [nanodegree.long() for nanodegree in Nanodegree.query.all()]
-
+    
     # If the body comes in empty, raise a 404 error
     if len(body) == 0:
         abort(404)
 
     # If the required parameters for new nanodegrees aren't present, abort
-    if 'title' and 'path' not in body:
+    if 'title' and 'degree_path' not in body:
         abort(422)
 
     # If parameters are present, return JSON object with nanodegrees.long
     # Reference: https://knowledge.udacity.com/nanodegrees/350615
     try:
         title = body['title']
-        path = json.dumps(body['path'])
+        degree_path = json.dumps(body['degree_path'])
 
-        nanodegree = Nanodegree(title=title, path=path)
+        nanodegree = Nanodegree(title=title, degree_path=degree_path)
+        print(Nanodegree)
         nanodegree.insert()
 
         return jsonify({
@@ -158,7 +190,7 @@ def create_nanodegree(payload):
         # Raise 403 error for any other caught errors
     except:
         abort(403)
-            
+
 
 
 
@@ -184,15 +216,15 @@ def update_nanodegrees(payload, id):
             abort(404)
 
         # If JSON body doesn't contain needed parameters, raise 404
-        # if "title" and 'path' not in body:
+        # if "title" and 'degree_path' not in body:
         #     abort(404)
             
-        # If title and path in body, update title and path
+        # If title and degree_path in body, update title and degree_path
         if "title" in body:
             nanodegree.title = body.get("title")
 
-        if "path" in body:
-            nanodegree.path = body.get("path")
+        if "degree_path" in body:
+            nanodegree.degree_path = body.get("degree_path")
 
         nanodegree.update()      # Update nanodegree
 
@@ -236,6 +268,47 @@ def delete_nanodegrees(payload, id):
         abort(422)
 
 
+#
+# COURSE ROUTES
+#
+""" 
+Function that gets the list of courses
+Does not require special authorization to access
+"""
+
+@APP.route('/courses', methods=['GET'])
+def get_courses():
+    try:
+        # Get courses via query, set to variable
+        selection = Course.query.all()      
+        
+
+        # Paginate the available courses
+        current_courses = paginate_courses(request, selection)
+        courses = Course.query.all()  
+
+        # Instantiation of the Nanodegree dictionary
+        nanodegrees_dict = {}
+        for nanodegree in nanodegrees:
+            nanodegrees_dict[nanodegree.id] = nanodegree.title
+
+        # If the length of the course list is 0, raise 404 error
+        if len(courses) == 0:        
+            abort(404)
+
+        # Return JSON object with short list of courses and 200 status
+        return jsonify({
+            'success': True,
+            'courses': [course for course in courses]
+        }), 200
+        
+    except:
+        abort(422)
+
+
+
+
+
 # Error Handling
 '''
 Example error handling for unprocessable entity
@@ -259,6 +332,14 @@ def not_found(error):
         "error": 404, 
         "message": "Resource not found"})
     ), 404
+
+@APP.errorhandler(403)
+def not_permitted(error):
+    return jsonify({
+        "success": False, 
+        "error": 403, 
+        "message": "User is recognized, but lacks permission"
+    }), 403
 
 @APP.errorhandler(400)
 def bad_request(error):

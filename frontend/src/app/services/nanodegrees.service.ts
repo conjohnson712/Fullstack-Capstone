@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 export interface Nanodegree {
   id: number;
   title: string;
-  path: Array<{
+  degree_path: Array<{
           name: string,
           weeks: number,
           difficulty: number
@@ -26,7 +26,7 @@ export class NanodegreesService {
                               1: {
                               id: 1,
                               title: 'Intro to Computer Basics',
-                              path: [
+                              degree_path: [
                                     {
                                       name: 'The Power Button: Where It All Begins',
                                       weeks: 1,
@@ -42,7 +42,7 @@ export class NanodegreesService {
                             2: {
                               id: 2,
                               title: 'Intermediate Computer Knowledge',
-                              path: [
+                              degree_path: [
 
                                     {
                                       name: 'Microsoft Word',
@@ -64,7 +64,7 @@ export class NanodegreesService {
                             3: {
                               id: 3,
                               title: 'Beginner Video Game Development',
-                              path: [
+                              degree_path: [
                                     {
                                       name: 'Creating Text-Based Adventures',
                                       weeks: 3,
