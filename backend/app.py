@@ -276,29 +276,30 @@ Does not require special authorization to access
 """
 
 @APP.route('/courses', methods=['GET'])
-def get_courses():
+@requires_auth('get:courses')
+def get_courses(payload):
     try:
         # Get courses via query, set to variable
         selection = Course.query.all()      
         
-
         # Paginate the available courses
         current_courses = paginate_courses(request, selection)
         courses = Course.query.all()  
 
         # Instantiation of the Nanodegree dictionary
-        nanodegrees_dict = {}
-        for nanodegree in nanodegrees:
-            nanodegrees_dict[nanodegree.id] = nanodegree.title
+        courses_dict = {}
+        for course in courses:
+            courses_dict[course.id] = course.name
 
         # If the length of the course list is 0, raise 404 error
-        if len(courses) == 0:        
+        if len(current_courses) == 0:        
             abort(404)
 
         # Return JSON object with short list of courses and 200 status
         return jsonify({
             'success': True,
-            'courses': [course for course in courses]
+            # 'courses': [course for course in courses],
+            'courses': courses_dict
         }), 200
         
     except:
@@ -314,11 +315,11 @@ Requires Mentor Authorization or higher
 def create_course(payload):
     # # Requests the JSON body
     body = request.get_json()
-    course = [course for course in course.query.all()]
+    course = [course for course in Course.query.all()]
     
     # If the body comes in empty, raise a 404 error
-    if len(body) == 0:
-        abort(404)
+    # if len(body) == 0:
+    #     abort(404)
 
     # If the required parameters for new courses aren't present, abort
     if 'name' and 'weeks' and 'difficulty' not in body:

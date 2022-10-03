@@ -1,0 +1,894 @@
+{
+	"info": {
+		"_postman_id": "a9cf2b5e-c0f5-4fc2-9ff7-221a433488ce",
+		"name": "udacity-fsnd-auticon",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22623876"
+	},
+	"item": [
+		{
+			"name": "public",
+			"item": [
+				{
+					"name": "/nanodegrees",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains nanodegrees array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.nanodegrees).to.be.an('array')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/nanodegrees",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"nanodegrees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/nanodegrees-detailed",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401 since no credentials are present\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/nanodegrees-detailed",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"nanodegrees-detailed"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/nanodegrees",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401 since no credentials are present\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/nanodegrees",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"nanodegrees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/nanodegrees/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401 since no credentials are present\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/nanodegrees/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"nanodegrees",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/nanodegrees/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401 since no credentials are present\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/nanodegrees/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"nanodegrees",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Auticon Representative",
+			"item": [
+				{
+					"name": "/nanodegrees",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains nanodegrees array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.nanodegrees).to.be.an('array')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/nanodegrees",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"nanodegrees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/nanodegrees-detailed",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/nanodegrees-detailed",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"nanodegrees-detailed"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/courses",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/courses",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"courses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/nanodegrees",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 403 since credentials are valid, but permission is not present\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/nanodegrees",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"nanodegrees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/courses",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{host}}/courses",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"courses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/nanodegrees/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 403 since credentials are valid, but permission is not present\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/nanodegrees/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"nanodegrees",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/courses/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/courses/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"courses",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/nanodegrees/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 403 since credentials are valid, but permission is not present\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/nanodegrees/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"nanodegrees",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/courses/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/courses/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"courses",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImdmMTIwbzBLVlFyMU8zWUJ3eWRjMyJ9.eyJpc3MiOiJodHRwczovL2F1dGljb24tY29uam9objcxMi51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjMyMGNhOGZhYzEyYmIxNjg2MTJkZWU3IiwiYXVkIjoiYXV0aWNvbiIsImlhdCI6MTY2NDgyNTExOSwiZXhwIjoxNjY0OTExNTE5LCJhenAiOiJhVE1kVHA0N0ZsQlU0SkE5V0lXWXpPcVBhekx5bVo0SyIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZ2V0OmNvdXJzZXMiLCJnZXQ6bmFub2RlZ3JlZXMiLCJnZXQ6bmFub2RlZ3JlZXMtZGV0YWlsZWQiLCJwYXRjaDpjb3Vyc2VzIiwicGF0Y2g6bmFub2RlZ3JlZXMiXX0.EnmKhCM201hDxpPQ4H10zKoYgBu7WN35VDsEyvp-dJMbB4AkfG_0RrUdSMFNCyP8YwS7Bm3bDD97IpAE0bUJ6klxoNS8s9vlCZQqrYf-EwFHcs0yT7sK4LnLCO26kF-mhNLdmTeyz8TuWiAIDvU7Z846CwISM2gZTK-RvU--Sq3duh_iZYOSbHJvh8Bf7OZTMucgdOIge6N-sxYajFAtKbBjqqf4IT1C8mb8mJj5ajb0NHrD4v7Y4zzCZ3mhFOv29Vi3ywSHbLzXuzyJvr-S3As9HqDDCW1S_dnJRjaC7qK5TXFtoeUNqObpIjI0EfC_QFArHBbSMS2eU86pLHcArQ",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Udacity Manager",
+			"item": [
+				{
+					"name": "/nanodegrees",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains nanodegrees array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.nanodegrees).to.be.an('array')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/nanodegrees",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"nanodegrees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/nanodegrees-detailed",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains nanodegrees array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.nanodegrees).to.be.an('array')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/nanodegrees-detailed",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"nanodegrees-detailed"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/courses",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/courses",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"courses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/nanodegrees",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Test Degree\",\r\n    \"degree_path\": {\r\n        \"name\": \"Test Course\",\r\n        \"weeks\": 3,\r\n        \"difficulty\": 1\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{host}}/nanodegrees",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"nanodegrees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/courses",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Test Course\",\r\n    \"weeks\": 3, \r\n    \"difficulty\": 1\r\n}"
+						},
+						"url": {
+							"raw": "{{host}}/courses",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"courses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/nanodegrees/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains nanodegrees array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.nanodegrees).to.be.an('array')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Water5\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/nanodegrees/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"nanodegrees",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/courses/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/courses/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"courses",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/nanodegrees/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/nanodegrees/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"nanodegrees",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/courses/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/courses/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"courses",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImdmMTIwbzBLVlFyMU8zWUJ3eWRjMyJ9.eyJpc3MiOiJodHRwczovL2F1dGljb24tY29uam9objcxMi51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjMyMGNhZjE0NWQ3NTliYjQzNThlNTMyIiwiYXVkIjoiYXV0aWNvbiIsImlhdCI6MTY2NDgyNTE1NywiZXhwIjoxNjY0OTExNTU3LCJhenAiOiJhVE1kVHA0N0ZsQlU0SkE5V0lXWXpPcVBhekx5bVo0SyIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmNvdXJzZXMiLCJkZWxldGU6bmFub2RlZ3JlZXMiLCJnZXQ6Y291cnNlcyIsImdldDpuYW5vZGVncmVlcyIsImdldDpuYW5vZGVncmVlcy1kZXRhaWxlZCIsInBhdGNoOmNvdXJzZXMiLCJwYXRjaDpuYW5vZGVncmVlcyIsInBvc3Q6Y291cnNlcyIsInBvc3Q6bmFub2RlZ3JlZXMiXX0.w2CsKLaIvLshE5seXz6FUltXBpkByK4OEMyQvz46bXyU3NW0Ji9QHb2VA-xybODOg9CIOX7TByDMlGO9KRxNwlv5jHLWXFzf_aNEWdaV1WqCU1X8g-mxCOwBSFIuO_RyKuI4MLl1cMM6GY3QyC5N9Ub124UjTCprAWdxa4KP9briz1EpOR7O0PM9TL94HO7m4tQWo7m-_peQwj85nwz7QEkd6oNn4-PA0H2iY8GkOPJ5Tyd4f58QuNTIq1VZZ8HwdII6ic5IphKZZm8OfgaOE0HhbXgO_BTZllsuiBn7QiQ1MLxbNlppSSoRGcSXfy0P5WCh6-ZRxYKhI65-6TloFA",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "localhost:5000",
+			"type": "string"
+		}
+	]
+}

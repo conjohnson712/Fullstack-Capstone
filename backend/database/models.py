@@ -39,8 +39,15 @@ def db_drop_and_create_all():
         degree_path='[{"name": "Introduction to Programming Basics", "weeks": 6, "difficulty": 1}, {"name": "Understanding Those Pesky Logins", "weeks": 3, "difficulty": 1}]'
     )
 
+    # add a demo row for Courses
+    course = Course(
+        name = 'Introduction to Programming Basics',
+        weeks = 6, 
+        difficulty = 1
+    )
 
     nanodegree.insert()
+    course.insert()
 
 
 # ROUTES
@@ -153,6 +160,45 @@ class Course(db.Model):
   weeks = Column(Integer, nullable=False)
   difficulty = Column(Integer, nullable=False)
 
+  '''
+  insert()
+      inserts a new model into a database
+      the model must have a unique name
+      the model must have a unique id or null id
+      EXAMPLE
+          nanodegree = Nanodegree(title=req_title, degree_path=req_degree_path)
+          nanodegree.insert()
+  '''
+
+  def insert(self):
+    db.session.add(self)
+    db.session.commit()
+
+  '''
+  delete()
+    deletes a new model into a database
+      the model must exist in the database
+      EXAMPLE
+          nanodegree = Nanodegree(title=req_title, degree_path=req_degree_path)
+          nanodegree.delete()
+  '''
+
+  def delete(self):
+    db.session.delete(self)
+    db.session.commit()
+
+  '''
+  update()
+      updates a new model into a database
+      the model must exist in the database
+      EXAMPLE
+          nanodegree = Nanodegree.query.filter(Nanodegree.id == id).one_or_none()
+          nanodegree.title = 'Introduction to Computer Basics'
+          nanodegree.update()
+  '''
+
+  def update(self):
+    db.session.commit()
 
   def __init__(self, name, weeks, difficulty):
     self.name = name
