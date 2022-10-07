@@ -376,6 +376,10 @@
 					"request": {
 						"method": "PATCH",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Patched Adams\"\r\n}"
+						},
 						"url": {
 							"raw": "{{host}}/nanodegrees/1",
 							"host": [
@@ -408,6 +412,15 @@
 					"request": {
 						"method": "PATCH",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Where to Find the Power Button\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "{{host}}/courses/1",
 							"host": [
@@ -635,12 +648,20 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"followAuthorizationHeader": true
+					},
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"Test Degree\",\r\n    \"degree_path\": {\r\n        \"name\": \"Test Course\",\r\n        \"weeks\": 3,\r\n        \"difficulty\": 1\r\n    }\r\n}"
+							"raw": "{\r\n    \"title\": \"Test Degree\",\r\n    \"degree_path\": {\r\n        \"name\": \"Test Course\",\r\n        \"weeks\": 3,\r\n        \"difficulty\": 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
 							"raw": "{{host}}/nanodegrees",
@@ -675,7 +696,12 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Test Course\",\r\n    \"weeks\": 3, \r\n    \"difficulty\": 1\r\n}"
+							"raw": "{\r\n    \"name\": \"Test Course\",\r\n    \"weeks\": 3, \r\n    \"difficulty\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
 							"raw": "{{host}}/courses",
@@ -755,6 +781,15 @@
 					"request": {
 						"method": "PATCH",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Where to Find the Power Button\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "{{host}}/courses/1",
 							"host": [
@@ -837,7 +872,7 @@
 				"bearer": [
 					{
 						"key": "token",
-						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImdmMTIwbzBLVlFyMU8zWUJ3eWRjMyJ9.eyJpc3MiOiJodHRwczovL2F1dGljb24tY29uam9objcxMi51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjMyMGNhZjE0NWQ3NTliYjQzNThlNTMyIiwiYXVkIjoiYXV0aWNvbiIsImlhdCI6MTY2NDgyNTE1NywiZXhwIjoxNjY0OTExNTU3LCJhenAiOiJhVE1kVHA0N0ZsQlU0SkE5V0lXWXpPcVBhekx5bVo0SyIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmNvdXJzZXMiLCJkZWxldGU6bmFub2RlZ3JlZXMiLCJnZXQ6Y291cnNlcyIsImdldDpuYW5vZGVncmVlcyIsImdldDpuYW5vZGVncmVlcy1kZXRhaWxlZCIsInBhdGNoOmNvdXJzZXMiLCJwYXRjaDpuYW5vZGVncmVlcyIsInBvc3Q6Y291cnNlcyIsInBvc3Q6bmFub2RlZ3JlZXMiXX0.w2CsKLaIvLshE5seXz6FUltXBpkByK4OEMyQvz46bXyU3NW0Ji9QHb2VA-xybODOg9CIOX7TByDMlGO9KRxNwlv5jHLWXFzf_aNEWdaV1WqCU1X8g-mxCOwBSFIuO_RyKuI4MLl1cMM6GY3QyC5N9Ub124UjTCprAWdxa4KP9briz1EpOR7O0PM9TL94HO7m4tQWo7m-_peQwj85nwz7QEkd6oNn4-PA0H2iY8GkOPJ5Tyd4f58QuNTIq1VZZ8HwdII6ic5IphKZZm8OfgaOE0HhbXgO_BTZllsuiBn7QiQ1MLxbNlppSSoRGcSXfy0P5WCh6-ZRxYKhI65-6TloFA",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImdmMTIwbzBLVlFyMU8zWUJ3eWRjMyJ9.eyJpc3MiOiJodHRwczovL2F1dGljb24tY29uam9objcxMi51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjMyMGNhZjE0NWQ3NTliYjQzNThlNTMyIiwiYXVkIjoiYXV0aWNvbiIsImlhdCI6MTY2NTE2MzM3NCwiZXhwIjoxNjY1MjQ5Nzc0LCJhenAiOiJhVE1kVHA0N0ZsQlU0SkE5V0lXWXpPcVBhekx5bVo0SyIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmNvdXJzZXMiLCJkZWxldGU6bmFub2RlZ3JlZXMiLCJnZXQ6Y291cnNlcyIsImdldDpuYW5vZGVncmVlcyIsImdldDpuYW5vZGVncmVlcy1kZXRhaWxlZCIsInBhdGNoOmNvdXJzZXMiLCJwYXRjaDpuYW5vZGVncmVlcyIsInBvc3Q6Y291cnNlcyIsInBvc3Q6bmFub2RlZ3JlZXMiXX0.MNmMj4RVMqX4YmtmX3cPiKILLbPNgCB6ot1aUXDJeinoE9_pscmjKQcSlaMBPcNqxMs-nvZSIyqlmvCKiOmrZdaIqlWSi_Ew0jnanXT8s80QwbqCqmG3cSKVQE_BA-Fd0Bs__zSc0BE_JH6qYrO5QKjF5PebBWaSkSfVp4iGvege03BartISx7bct1bhi6AqlVtfBfNVPDfQ75GMcdm1sXpjscvq9Pqk-IqYt-SECae4YaBNjCYLCzw5V6rS2tIEEtUVvCuJwZhWiOT_dPI_3dKN40oYaUJH6wIrfP0lNCgOoAMWHj-ilQIBtfooLxlOkQCSns5b8emYQy0E3OibiQ",
 						"type": "string"
 					}
 				]

@@ -16,11 +16,12 @@ def create_app(test_config=None):
 
 
 APP = create_app()
-# cors = CORS(APP, resources={r'/*': {'origins': '*'}})
+cors = CORS(APP, resources={r'/*': {'origins': '*'}})
 
 '''
-The rest of this code was made referencing my Coffee_Shop_API:
+The rest of this code was made referencing my Coffee_Shop_API and Trivia_API:
 https://github.com/conjohnson712/Coffee-Shop
+https://github.com/conjohnson712/Trivia_API
 '''
 '''
 @TODO uncomment the following line to initialize the database
@@ -28,7 +29,7 @@ https://github.com/conjohnson712/Coffee-Shop
 !! NOTE THIS MUST BE UNCOMMENTED ON FIRST RUN
 !! Running this function will add one
 '''
-db_drop_and_create_all()
+# db_drop_and_create_all()
 
 
 ''' 
@@ -162,21 +163,25 @@ Requires Mentor Authorization or higher
 def create_nanodegree(payload):
     # # Requests the JSON body
     body = request.get_json()
-    nanodegree = [nanodegree.long() for nanodegree in Nanodegree.query.all()]
+
+    new_title = body.get("title", None)
+    new_degree_path = body.get("degree_path", None)
+    #nanodegree = [nanodegree.long() for nanodegree in Nanodegree.query.all()]
     
     # If the body comes in empty, raise a 404 error
-    if len(body) == 0:
-        abort(404)
+    # f len(body) == 0:
+    #     abort(404)i
 
     # If the required parameters for new nanodegrees aren't present, abort
     if 'title' and 'degree_path' not in body:
         abort(422)
 
+
     # If parameters are present, return JSON object with nanodegrees.long
     # Reference: https://knowledge.udacity.com/nanodegrees/350615
     try:
-        title = body['title']
-        degree_path = json.dumps(body['degree_path'])
+        # title = body['title']
+        # degree_path = json.dumps(body['degree_path'])
 
         nanodegree = Nanodegree(title=title, degree_path=degree_path)
         nanodegree.insert()
@@ -315,29 +320,33 @@ Requires Mentor Authorization or higher
 def create_course(payload):
     # # Requests the JSON body
     body = request.get_json()
-    course = [course for course in Course.query.all()]
+    #course = [course for course in Course.query.all()]
     
     # If the body comes in empty, raise a 404 error
     # if len(body) == 0:
     #     abort(404)
 
     # If the required parameters for new courses aren't present, abort
-    if 'name' and 'weeks' and 'difficulty' not in body:
-        abort(422)
+    # if 'name' and 'weeks' and 'difficulty' not in body:
+    #     abort(422)
 
     # If parameters are present, return JSON object with courses.long
     # Reference: https://knowledge.udacity.com/courses/350615
     try:
-        name = body['name']
-        weeks = body['weeks']
-        difficulty = body['difficulty']
+        name = body.get('name', None)
+        weeks = body['weeks', None]
+        difficulty = body['difficulty', None]
 
         course = Course(name=name, weeks=weeks, difficulty=difficult)
         course.insert()
 
+        selection = Course.query.order_by(Course.id).all()
+        current_courses = paginate_courses(request, selection)
+
         return jsonify({
-            'success': True, 
-            'courses': [course]
+            'success': True,
+            'created': course.id,
+            'courses': current_courses
         }), 200
 
         # Raise 403 error for any other caught errors
@@ -381,7 +390,7 @@ def update_courses(payload, id):
         # Return JSON object with long course list and 200 status
         return jsonify({
             'success': True,
-            'courses': [course]
+            'courses': [course.long()]
         }), 200
 
     # Have a bad request error to catch any other errors

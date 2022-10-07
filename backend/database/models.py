@@ -160,6 +160,23 @@ class Course(db.Model):
   weeks = Column(Integer, nullable=False)
   difficulty = Column(Integer, nullable=False)
 
+
+
+  '''
+  long()
+    long form representation of the Nanodegree model
+  '''
+
+  def long(self):
+      return {
+          'id': self.id,
+          'name': self.name,
+          "weeks": self.weeks,
+          "difficulty": self.difficulty
+      }
+
+
+
   '''
   insert()
       inserts a new model into a database
