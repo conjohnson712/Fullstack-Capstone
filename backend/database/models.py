@@ -1,5 +1,5 @@
 import os
-from sqlalchemy import Column, String, Integer
+from sqlalchemy import Column, String, Integer, ForeignKey
 from flask_sqlalchemy import SQLAlchemy
 import json
 
@@ -33,41 +33,46 @@ db_drop_and_create_all()
 def db_drop_and_create_all():
     db.drop_all()
     db.create_all()
+
+    
     # add one demo row which is helping in POSTMAN test
     nanodegree = Nanodegree(
         title='Introduction to Computer Basics',
-        degree_path='[{"name": "Introduction to Programming Basics", "weeks": 6, "difficulty": 1}, {"name": "Understanding Those Pesky Logins", "weeks": 3, "difficulty": 1}]'
+        courses= "1: Introduction to Programming Basics, 2: Understanding Those Pesky Logins"
     )
 
     # add a demo row for Courses
     course = Course(
         name = 'Introduction to Programming Basics',
         weeks = 6, 
-        difficulty = 1
+        difficulty = 1,
+        nanodegree_id = 1
     )
 
     nanodegree.insert()
     course.insert()
-
+    
 
 # ROUTES
 
 '''
 Nanodegree
-a persistent nanodegree entity, extends the base SQLAlchemy Model
+    a persistent nanodegree entity, extends the base SQLAlchemy Model
 '''
 
 
 class Nanodegree(db.Model):
+    __tablename__ = 'nanodegrees'
     # Auto-incrementing, unique primary key
     id = Column(Integer().with_variant(Integer, "sqlite"), primary_key=True)
     
     # String Title
     title = Column(String(80), unique=True)
+    courses  = Column(String(500), ForeignKey("courses.id"), nullable=True)
 
-    # the degree_path blob - this stores a lazy json blob
+    # the courses blob - this stores a lazy json blob
     # the required datatype is [{'name': string, 'weeks': number, 'difficulty':number}]
-    degree_path = Column(String(180), nullable=False)
+
 
     '''
     short()
@@ -75,12 +80,9 @@ class Nanodegree(db.Model):
     '''
 
     def short(self):
-        print(json.loads(self.degree_path))
-        short_path = [{'name': r['name']} for r in json.loads(self.degree_path)]
         return {
             'id': self.id,
             'title': self.title,
-            'degree_path': short_path
         }
 
     '''
@@ -92,7 +94,7 @@ class Nanodegree(db.Model):
         return {
             'id': self.id,
             'title': self.title,
-            'degree_path': json.loads(self.degree_path)
+            'courses': self.courses
         }
 
     '''
@@ -135,11 +137,13 @@ class Nanodegree(db.Model):
     def update(self):
         db.session.commit()
 
+
+    # Reference: https://cs.stanford.edu/people/nick/py/python-map-lambda.html
     def format(self):
         return {
             "id": self.id,
             "title": self.title,
-            "degree_path": self.degree_path,
+            "courses": self.courses
         }
 
     def __repr__(self):
@@ -148,19 +152,19 @@ class Nanodegree(db.Model):
 
 '''
 Course
-
+    a persistent course entity, extends the base SQLAlchemy Model
+    Reference: https://stackoverflow.com/questions/52057470/sqlalchemy-one-many-and-one-one-in-one-table
 '''
 class Course(db.Model):
   __tablename__ = 'courses'
 
   id = Column(Integer, primary_key=True)
-  # nanodegree_id = Column(Integer, ForeignKey('nanodegrees.id'), nullable=True) #Nullable because not all courses go to a nanodegree
-  
   name = Column(String, nullable=False)
   weeks = Column(Integer, nullable=False)
   difficulty = Column(Integer, nullable=False)
-
-
+  nanodegree_id = Column(Integer, ForeignKey('nanodegrees.id'), nullable=True) #Nullable because not all courses may go to a nanodegree
+  created_by = db.relationship("Nanodegree", foreign_keys=[nanodegree_id])
+  nanodegrees = db.relationship("Nanodegree", backref="course", primaryjoin=id==Nanodegree.courses)
 
   '''
   long()
@@ -168,11 +172,12 @@ class Course(db.Model):
   '''
 
   def long(self):
-      return {
-          'id': self.id,
-          'name': self.name,
-          "weeks": self.weeks,
-          "difficulty": self.difficulty
+    return {
+        "id": self.id,
+        "name": self.name,
+        "weeks": self.weeks,
+        "difficulty": self.difficulty,
+        "nanodegree_id": self.nanodegree_id
       }
 
 
@@ -217,15 +222,17 @@ class Course(db.Model):
   def update(self):
     db.session.commit()
 
-  def __init__(self, name, weeks, difficulty):
+  def __init__(self, name, weeks, difficulty, nanodegree_id):
     self.name = name
     self.weeks = weeks
     self.difficulty = difficulty
+    self.nanodegree_id = nanodegree_id
 
   def format(self):
     return {
       'id': self.id, 
       'name': self.name,
       'weeks': self.weeks,
-      'difficulty': self.difficulty
+      'difficulty': self.difficulty,
+      "nanodegree_id": self.nanodegree_id
     }

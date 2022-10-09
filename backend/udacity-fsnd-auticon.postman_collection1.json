@@ -649,14 +649,14 @@
 						}
 					],
 					"protocolProfileBehavior": {
-						"followAuthorizationHeader": true
+						"disabledSystemHeaders": {}
 					},
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"Test Degree\",\r\n    \"degree_path\": {\r\n        \"name\": \"Test Course\",\r\n        \"weeks\": 3,\r\n        \"difficulty\": 1\r\n    }\r\n}",
+							"raw": "{\r\n    \"id\": 2,\r\n    \"title\": \"Test Degree\",\r\n    \"courses\": \"Test Course 1, Test Course 2\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -747,7 +747,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"title\": \"Water5\"\n}"
+							"raw": "{\n    \"title\": \"Introduction to Programming\"\n}"
 						},
 						"url": {
 							"raw": "{{host}}/nanodegrees/1",
