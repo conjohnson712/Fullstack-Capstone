@@ -4,7 +4,7 @@ from functools import wraps
 from jose import jwt
 from urllib.request import urlopen
 
-# The domain could not be changed from the last project
+
 AUTH0_DOMAIN = 'auticon-conjohn712.us.auth0.com'  
 ALGORITHMS = ['RS256']
 API_AUDIENCE = 'auticon'

@@ -161,24 +161,23 @@ Requires Udacity Manager Authorization or higher
 @requires_auth('post:nanodegrees')
 def create_nanodegree(payload):
     # Requests the JSON body
-    body = request.get_json()
+    body = request.get_json(payload)
+
+    title = body['title']
+    courses = body['courses']
 
     # If the body comes in empty, raise a 404 error
     if body == None:
         abort(404)
 
 
-    # If the required parameters for new nanodegrees aren't present, abort
+    # # If the required parameters for new nanodegrees aren't present, abort
     if 'title' and 'courses' not in body:
         abort(422)
 
 
     # If parameters are present, return JSON object with nanodegrees.long
     # Reference: https://knowledge.udacity.com/nanodegrees/350615
-    # try:
-    title = body['title']
-    courses = body['courses']
-
     nanodegree = Nanodegree(title=title, courses=courses)
     nanodegree.insert()
 

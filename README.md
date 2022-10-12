@@ -110,14 +110,38 @@ This API returns 6 different error types:
 
 
 #### POST /nanodegrees
-**TODO
+- General: 
+  - Returns a full dictionary list of nanodegrees, including the id of the new entry, and a success value.
+  - Results are paginated in groups of 10
+  - Sample: 'curl http://127.0.0.1:5000/nanodegrees
+    - f
+
+```
+{
+    "Created": 2,
+    "nanodegrees": [
+        {
+            "courses": "1: Introduction to Programming Basics, 2: Understanding Those Pesky Logins",
+            "id": 1,
+            "title": "Introduction to Computer Basics"
+        },
+        {
+            "courses": "Test Course 1, Test Course 2",
+            "id": 2,
+            "title": "Test Degree"
+        }
+    ],
+    "success": true
+}
+```
 
 
 #### PATCH /nanodegrees/<int:nanodegree_id>
-- General: Returns a full dictionary list of nanodegrees, the updated value, and a success value.
-- Results are paginated in groups of 10
-- Sample: 'curl http://127.0.0.1:5000/nanodegrees/1'
-  - Patch body {"title": "PATCHed Adams"}
+- General: 
+  - Returns a full dictionary list of nanodegrees, the updated value, and a success value.
+  - Results are paginated in groups of 10
+  - Sample: 'curl http://127.0.0.1:5000/nanodegrees/1'
+    - Patch body {"title": "PATCHed Adams"}
 
 ```
 {
