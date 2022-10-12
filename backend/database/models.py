@@ -43,6 +43,7 @@ def db_drop_and_create_all():
 
     # add a demo row for Courses
     course = Course(
+        id = 1,
         name = 'Introduction to Programming Basics',
         weeks = 6, 
         difficulty = 1,
@@ -158,7 +159,7 @@ Course
 class Course(db.Model):
   __tablename__ = 'courses'
 
-  id = Column(Integer, primary_key=True)
+  id = Column(Integer().with_variant(Integer, "sqlite"), primary_key=True)
   name = Column(String, nullable=False)
   weeks = Column(Integer, nullable=False)
   difficulty = Column(Integer, nullable=False)
@@ -222,7 +223,8 @@ class Course(db.Model):
   def update(self):
     db.session.commit()
 
-  def __init__(self, name, weeks, difficulty, nanodegree_id):
+  def __init__(self, id, name, weeks, difficulty, nanodegree_id):
+    self.id = id
     self.name = name
     self.weeks = weeks
     self.difficulty = difficulty

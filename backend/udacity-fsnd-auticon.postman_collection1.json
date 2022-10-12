@@ -378,7 +378,12 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"Patched Adams\"\r\n}"
+							"raw": "{\r\n    \"title\": \"Patched Adams 1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
 							"raw": "{{host}}/nanodegrees/1",
@@ -503,7 +508,7 @@
 				"bearer": [
 					{
 						"key": "token",
-						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImdmMTIwbzBLVlFyMU8zWUJ3eWRjMyJ9.eyJpc3MiOiJodHRwczovL2F1dGljb24tY29uam9objcxMi51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjMyMGNhOGZhYzEyYmIxNjg2MTJkZWU3IiwiYXVkIjoiYXV0aWNvbiIsImlhdCI6MTY2NDgyNTExOSwiZXhwIjoxNjY0OTExNTE5LCJhenAiOiJhVE1kVHA0N0ZsQlU0SkE5V0lXWXpPcVBhekx5bVo0SyIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZ2V0OmNvdXJzZXMiLCJnZXQ6bmFub2RlZ3JlZXMiLCJnZXQ6bmFub2RlZ3JlZXMtZGV0YWlsZWQiLCJwYXRjaDpjb3Vyc2VzIiwicGF0Y2g6bmFub2RlZ3JlZXMiXX0.EnmKhCM201hDxpPQ4H10zKoYgBu7WN35VDsEyvp-dJMbB4AkfG_0RrUdSMFNCyP8YwS7Bm3bDD97IpAE0bUJ6klxoNS8s9vlCZQqrYf-EwFHcs0yT7sK4LnLCO26kF-mhNLdmTeyz8TuWiAIDvU7Z846CwISM2gZTK-RvU--Sq3duh_iZYOSbHJvh8Bf7OZTMucgdOIge6N-sxYajFAtKbBjqqf4IT1C8mb8mJj5ajb0NHrD4v7Y4zzCZ3mhFOv29Vi3ywSHbLzXuzyJvr-S3As9HqDDCW1S_dnJRjaC7qK5TXFtoeUNqObpIjI0EfC_QFArHBbSMS2eU86pLHcArQ",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImdmMTIwbzBLVlFyMU8zWUJ3eWRjMyJ9.eyJpc3MiOiJodHRwczovL2F1dGljb24tY29uam9objcxMi51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjMyMGNhOGZhYzEyYmIxNjg2MTJkZWU3IiwiYXVkIjoiYXV0aWNvbiIsImlhdCI6MTY2NTU5OTkwMiwiZXhwIjoxNjY1Njg2MzAyLCJhenAiOiJhVE1kVHA0N0ZsQlU0SkE5V0lXWXpPcVBhekx5bVo0SyIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZ2V0OmNvdXJzZXMiLCJnZXQ6bmFub2RlZ3JlZXMiLCJnZXQ6bmFub2RlZ3JlZXMtZGV0YWlsZWQiLCJwYXRjaDpjb3Vyc2VzIiwicGF0Y2g6bmFub2RlZ3JlZXMiXX0.viJ6dDxQuZplyJLQUr13EcGuFCtL-FBDsgRPVm44OIui55yR8FzWG3BLty8HNTXgwV9DCC7fDg4rAUgWbJK9xCH-RTMCATp9XXz-ME5ZjtbtQFeLG0WMejlV3q0hLMwp4CfpjlCidWw2Ao8Tf3M8WU4dMOAKjSnkdyluL8eEpsfFY-6JDndQnYhR3FMc709gGfipnp7sO66f8LwHn6i-DsWeL7wdO1shdFxdB7bQRjxmSZETZx0kr_ME2PooVVG0zWH2Wg1vijFjUqo1Z_DIPccH52MkdKTR7A9qVxAkVfW8OZb5miI4hXmPKSGpeUQFBJxtyV0n1YJ3MhqKCmeH8Q",
 						"type": "string"
 					}
 				]
@@ -649,14 +654,16 @@
 						}
 					],
 					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {}
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
 					},
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": 2,\r\n    \"title\": \"Test Degree\",\r\n    \"courses\": \"Test Course 1, Test Course 2\"\r\n}",
+							"raw": "{\r\n    \"title\": \"Test Degree\",\r\n    \"courses\": \"Test Course 1, Test Course 2\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -696,7 +703,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Test Course\",\r\n    \"weeks\": 3, \r\n    \"difficulty\": 1\r\n}",
+							"raw": "{\r\n    \"name\": \"Test Course 2\",\r\n    \"weeks\": 3, \r\n    \"difficulty\": 1,\r\n    \"nanodegree_id\": 1\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -747,7 +754,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"title\": \"Introduction to Programming\"\n}"
+							"raw": "{\n    \"title\": \"PATCHed Adams\"\n}"
 						},
 						"url": {
 							"raw": "{{host}}/nanodegrees/1",
@@ -872,7 +879,7 @@
 				"bearer": [
 					{
 						"key": "token",
-						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImdmMTIwbzBLVlFyMU8zWUJ3eWRjMyJ9.eyJpc3MiOiJodHRwczovL2F1dGljb24tY29uam9objcxMi51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjMyMGNhZjE0NWQ3NTliYjQzNThlNTMyIiwiYXVkIjoiYXV0aWNvbiIsImlhdCI6MTY2NTE2MzM3NCwiZXhwIjoxNjY1MjQ5Nzc0LCJhenAiOiJhVE1kVHA0N0ZsQlU0SkE5V0lXWXpPcVBhekx5bVo0SyIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmNvdXJzZXMiLCJkZWxldGU6bmFub2RlZ3JlZXMiLCJnZXQ6Y291cnNlcyIsImdldDpuYW5vZGVncmVlcyIsImdldDpuYW5vZGVncmVlcy1kZXRhaWxlZCIsInBhdGNoOmNvdXJzZXMiLCJwYXRjaDpuYW5vZGVncmVlcyIsInBvc3Q6Y291cnNlcyIsInBvc3Q6bmFub2RlZ3JlZXMiXX0.MNmMj4RVMqX4YmtmX3cPiKILLbPNgCB6ot1aUXDJeinoE9_pscmjKQcSlaMBPcNqxMs-nvZSIyqlmvCKiOmrZdaIqlWSi_Ew0jnanXT8s80QwbqCqmG3cSKVQE_BA-Fd0Bs__zSc0BE_JH6qYrO5QKjF5PebBWaSkSfVp4iGvege03BartISx7bct1bhi6AqlVtfBfNVPDfQ75GMcdm1sXpjscvq9Pqk-IqYt-SECae4YaBNjCYLCzw5V6rS2tIEEtUVvCuJwZhWiOT_dPI_3dKN40oYaUJH6wIrfP0lNCgOoAMWHj-ilQIBtfooLxlOkQCSns5b8emYQy0E3OibiQ",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImdmMTIwbzBLVlFyMU8zWUJ3eWRjMyJ9.eyJpc3MiOiJodHRwczovL2F1dGljb24tY29uam9objcxMi51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjMyMGNhZjE0NWQ3NTliYjQzNThlNTMyIiwiYXVkIjoiYXV0aWNvbiIsImlhdCI6MTY2NTU5OTc2OCwiZXhwIjoxNjY1Njg2MTY4LCJhenAiOiJhVE1kVHA0N0ZsQlU0SkE5V0lXWXpPcVBhekx5bVo0SyIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmNvdXJzZXMiLCJkZWxldGU6bmFub2RlZ3JlZXMiLCJnZXQ6Y291cnNlcyIsImdldDpuYW5vZGVncmVlcyIsImdldDpuYW5vZGVncmVlcy1kZXRhaWxlZCIsInBhdGNoOmNvdXJzZXMiLCJwYXRjaDpuYW5vZGVncmVlcyIsInBvc3Q6Y291cnNlcyIsInBvc3Q6bmFub2RlZ3JlZXMiXX0.H5T2ciHQNGjPpVG4qzHUwtli0BzBieZXdBqDhXUnsdsn5yQEn6EOq4_Uso-fnAovOjNgLMRxGO2iVpcZwUQuliOohc_hCSyoi33vTDQ-KSo-70p2_tLgMNysd9KK8UBHoYA1xdkH1QkYBSC8teddDTWxhcMwkhbqyk8BNQlhTTUlS85SOGD6eMOICY13Z0IhwHYecE1dTPG9qsNlf7JVjyzxN34QZAlBbAV-EEkzG0Fm_OqOUrYSqsDuaix1BQOk52aY8yEABCDjY0XLj5EsH2dOzC0OgoVCCfMsSIaaTJqP8zV7d0xUD01OIK_6M_Muf4h07khukuoglRMA-yS3Og",
 						"type": "string"
 					}
 				]
