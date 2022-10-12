@@ -12,6 +12,11 @@ Follow instructions to install the latest version of python for your platform in
 
 We recommend working within a virtual environment whenever using Python for projects. This keeps your dependencies for each project separate and organized. Instructions for setting up a virtual environment for your platform can be found in the [python docs](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/)
 
+Please note that Windows users should use the following command:
+```
+source venv/Scripts/activate
+```
+
 #### PIP Dependencies
 
 Once you have your virtual environment setup and running, install dependencies by navigating to the `/backend` directory and running:
@@ -47,35 +52,5 @@ flask run --reload
 ```
 
 The `--reload` flag will detect file changes and restart the server automatically.
-
-## Tasks
-
-### Setup Auth0
-
-1. Create a new Auth0 Account
-2. Select a unique tenant domain
-3. Create a new, single page web application
-4. Create a new API
-   - in API Settings:
-     - Enable RBAC
-     - Enable Add Permissions in the Access Token
-5. Create new API permissions:
-   - `get:nanodegrees`
-   - `get:nanodegrees-detailed`
-   - `post:nanodegrees`
-   - `patch:nanodegrees`
-   - `delete:nanodegrees`
-6. Create new roles for:
-   - Current Student
-     - can `get:nanodegrees-detailed`
-   - Mentor
-     - can perform all actions
-7. Test your endpoints with [Postman](https://getpostman.com).
-   - Register 2 users - assign the Current Student role to one and Mentor role to the other.
-   - Sign into each account and make note of the JWT.
-   - Import the postman collection `./starter_code/backend/udacity-fsnd-auticon.postman_collection.json`
-   - Right-clicking the collection folder for current student and mentor, navigate to the authorization tab, and including the JWT in the token field (you should have noted these JWTs).
-   - Run the collection and correct any errors.
-   - Export the collection overwriting the one we've included so that we have your proper JWTs during review!
 
 

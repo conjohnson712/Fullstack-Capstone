@@ -160,11 +160,11 @@ Requires Udacity Manager Authorization or higher
 @APP.route('/nanodegrees', methods=['POST'])
 @requires_auth('post:nanodegrees')
 def create_nanodegree(payload):
-    # # Requests the JSON body
+    # Requests the JSON body
     body = request.get_json()
 
     # If the body comes in empty, raise a 404 error
-    if len(body) == 0:
+    if body == None:
         abort(404)
 
 
