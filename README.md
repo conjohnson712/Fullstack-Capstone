@@ -37,7 +37,7 @@ Prospective students and the public can browse the list of Nanodegree paths avai
 **For the purpose of confidentiality on behalf of Udacity and Auticon,all Nanodegrees, Courses, names, and other objects featured in this project are fabricated by myself and are not real (that I know of)**. This explains the silly nature of the courses present, as I wanted to be sure that I created classes that would not actually exist on Udacity, to be safe. Udacity and Auticon have presented me with a wonderful opportunity and I would not wish to insult them or jeopardize my enrollment through them by accidentally sharing confidential information. 
 
 ## Pre-Requisites and Local Development
-This project requires the use of Python, Node, and Pip. Follow the instructions within the README files found in the backend and frontend folders to get your device set up to run this project. 
+This project requires the use of Python, Node, and Pip. Follow the instructions within the README files found in the backend folder to get your device set up to run this project.
 ## API Reference
 ** POST HEROKU LINK HERE **
 
