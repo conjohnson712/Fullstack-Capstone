@@ -3,4 +3,5 @@ notes.txt
 venv
 node_modules
 config.json
-/frontend/**
+frontend/
+
