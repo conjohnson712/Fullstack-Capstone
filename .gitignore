@@ -4,4 +4,4 @@ venv
 node_modules
 config.json
 frontend/
-
+__pycache__
