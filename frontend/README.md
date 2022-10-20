@@ -1,5 +1,7 @@
 # Auticon Learning Frontend
 
+## Please Note
+The Frontend for this project only serves as a way to log in to Auth0 with the correct user credentials. The Nanodegrees and Courses do not yet appear on the UI, but will be fully functional in the backend.
 ## Getting Setup
 
 > _tip_: this frontend is designed to work with [Flask-based Backend](../backend). It is recommended you stand up the backend first, test using Postman, and then the frontend should integrate smoothly.
