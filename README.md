@@ -39,7 +39,7 @@ Prospective students and the public can browse the list of Nanodegree paths avai
 ## Pre-Requisites and Local Development
 This project requires the use of Python, Node, and Pip. Follow the instructions within the README files found in the backend folder to get your device set up to run this project.
 ## API Reference
-** POST HEROKU LINK HERE **
+This API is hosted on Heroku using the following link: [Click Here](https://git.heroku.com/auticon-capstone.git)
 
 ### Getting Started
 Follow the instructions within the backend README file to start the server. Then, you can follow the instructions in the frontend README file to get the frontend of the application running. 
