@@ -77,15 +77,15 @@ def after_request(response):
 
     return response
 
-'''
-Empty route handler to test base server functionality 
-Reference: https://knowledge.udacity.com/nanodegrees/313462
-'''
-@app.route('/')
-def handler():
-    return jsonify({
-        "success": True
-    })
+# '''
+# Empty route handler to test base server functionality 
+# Reference: https://knowledge.udacity.com/nanodegrees/313462
+# '''
+# @app.route('/')
+# def handler():
+#     return jsonify({
+#         "success": True
+#     })
 
 
 # NANODEGREE ROUTES
@@ -500,9 +500,9 @@ app = create_app()
 if __name__ == '__main__':
     app = create_app()
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080, debug=True)
-© 2021 GitHub, Inc.app = create_app()
+# if __name__ == '__main__':
+#     app.run(host='0.0.0.0', port=8080, debug=True)
+# © 2021 GitHub, Inc.app = create_app()
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080, debug=True)
+# if __name__ == '__main__':
+#     app.run(host='0.0.0.0', port=8080, debug=True)
