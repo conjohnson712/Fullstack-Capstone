@@ -495,6 +495,8 @@ def handle_auth_error(ex):
     return response
 
 # Reference: https://knowledge.udacity.com/questions/560784
+app = create_app()
+
 if __name__ == '__main__':
     app = create_app()
 
