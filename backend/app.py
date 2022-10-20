@@ -2,8 +2,8 @@ import os
 from flask import Flask, request, abort, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
-from .database.models import db_drop_and_create_all, setup_db, Nanodegree, Course
-from .auth.auth import AuthError, requires_auth
+from database.models import db_drop_and_create_all, setup_db, Nanodegree, Course
+from auth.auth import AuthError, requires_auth
 
 def create_app(test_config=None):
   # create and configure the APP
@@ -322,7 +322,7 @@ Requires Udacity Manager Authorization or higher
 def create_course(payload):
     # # Requests the JSON body
     body = request.get_json()
-    #course = [course for course in Course.query.all()]
+
     
     # If the body comes in empty, raise a 404 error
     if len(body) == 0:
@@ -334,7 +334,6 @@ def create_course(payload):
 
     # If parameters are present, return JSON object with courses.long
     # Reference: https://knowledge.udacity.com/courses/350615
-    # try:
     name = body['name']
     weeks = body['weeks']
     difficulty = body['difficulty']

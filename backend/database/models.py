@@ -43,7 +43,6 @@ def db_drop_and_create_all():
 
     # add a demo row for Courses
     course = Course(
-        id = 1,
         name = 'Introduction to Programming Basics',
         weeks = 6, 
         difficulty = 1,
@@ -223,8 +222,7 @@ class Course(db.Model):
   def update(self):
     db.session.commit()
 
-  def __init__(self, id, name, weeks, difficulty, nanodegree_id):
-    self.id = id
+  def __init__(self, name, weeks, difficulty, nanodegree_id):
     self.name = name
     self.weeks = weeks
     self.difficulty = difficulty
